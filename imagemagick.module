@@ -26,7 +26,7 @@ function imagemagick_image_toolkits() {
  * Retrieve settings for the ImageMagick toolkit.
  */
 function image_imagemagick_settings() {
-  $config = config('imagemagick.settings');
+  $config = config('system.core');
 
   $form['imagemagick_quality'] = array(
     '#type' => 'textfield',
@@ -76,19 +76,6 @@ function image_imagemagick_settings() {
   );
 
   return $form;
-}
-
-/**
- * Submit handler handler for image_imagemagick_settings().
- */
-function image_imagemagick_settings_submit($form, &$form_state) {
-  $config = config('imagemagick.settings');
-
-  $config->set('imagemagick_quality', $form_state['values']['imagemagick_quality']);
-  $config->set('imagemagick_gm', $form_state['values']['imagemagick_gm']);
-  $config->set('imagemagick_convert', $form_state['values']['imagemagick_convert']);
-  $config->set('imagemagick_debug', $form_state['values']['imagemagick_debug']);
-  $config->save();
 }
 
 /**

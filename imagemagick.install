@@ -6,11 +6,37 @@
  */
 
 /**
+ * Implements hook_install().
+ */
+function imagemagick_install() {
+  // Config for image toolkits lives in system.core.json, so we set our defaults here
+  // instead of in a config file.
+  $config = config('system.core');
+  $config->set('imagemagick_quality', 75);
+  $config->set('imagemagick_gm', 0);
+  $config->set('imagemagick_convert', 'convert');
+  $config->set('imagemagick_debug', 0);
+  $config->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function imagemagick_uninstall() {
+  // Return the image toolkit to the default, if necessary.
+  $config = config('system.core');
+  $value = $config->get('image_toolkit');
+  if (!empty($value) && $value == 'imagemagick') {
+    $config->set('image_toolkit', 'gd');
+  }
+}
+
+/**
  * Move settings from variables to config.
  */
 function imagemagick_update_1000() {
   // Migrate variables to config, also convert any older ImageAPI ImageMagick variables.
-  $config = config('imagemagick.settings');
+  $config = config('system.core');
   $config->set('imagemagick_quality', update_variable_get('imageapi_imagemagick_quality',''));
   $config->set('imagemagick_quality', update_variable_get('imagemagick_quality',''));
   $config->set('imagemagick_convert', update_variable_get('imageapi_imagemagick_convert',''));

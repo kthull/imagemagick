@@ -13,7 +13,7 @@ function imagemagick_advanced_form_system_image_toolkit_settings_alter(&$form, &
     return;
   }
 
-  $config = config('imagemagick_advanced.settings');
+  $config = config('system.core');
 
   $im_form = &$form['image_toolkit_settings']['imagemagick'];
 
@@ -55,12 +55,6 @@ function imagemagick_advanced_form_system_image_toolkit_settings_alter(&$form, &
       '@color-url' => 'http://www.color.org/profiles.html',
     )),
   );
-
-  // Set individual config settings
-  $config->set('imagemagick_advanced_density', $form_state['values']['imagemagick_advanced_density']);
-  $config->set('imagemagick_advanced_colorspace', $form_state['values']['imagemagick_advanced_colorspace']);
-  $config->set('imagemagick_advanced_profile', $form_state['values']['imagemagick_advanced_profile']);
-  $config->save();
 }
 
 /**

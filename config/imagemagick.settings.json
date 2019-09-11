@@ -1,7 +1,0 @@
-{
-  "_config_name": "imagemagick.settings",
-  "imagemagick_quality": 75,
-  "imagemagick_gm": 0,
-  "imagemagick_convert": "convert",
-  "imagemagick_debug": 0
-}
