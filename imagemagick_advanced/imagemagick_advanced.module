@@ -15,7 +15,7 @@ function imagemagick_advanced_form_system_image_toolkit_settings_alter(&$form, &
 
   $config = config('system.core');
 
-  $im_form = &$form['image_toolkit_settings']['imagemagick'];
+  $im_form = &$form['image_toolkit_settings'];
 
   $im_form['imagemagick_advanced_density'] = array(
     '#type' => 'checkbox',

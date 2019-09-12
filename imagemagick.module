@@ -40,33 +40,30 @@ function image_imagemagick_settings() {
   );
 
   $form['imagemagick'] = array(
-    '#type' => 'fieldset',
+    '#type' => 'item',
     '#title' => t('ImageMagick'),
-    '#collapsible' => FALSE,
     '#description' => t('ImageMagick is a stand-alone program for image manipulation. It must be installed on the server and you need to know where it is located. Consult your server administrator or hosting provider for details.'),
   );
-  $form['imagemagick']['imagemagick_gm'] = array(
+  $form['imagemagick_gm'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable <a href="@gm-url">GraphicsMagick</a> support', array(
       '@gm-url' => 'http://www.graphicsmagick.org',
     )),
     '#default_value' => $config->get('imagemagick_gm'),
-    '#weight' => -5,
   );
-  $form['imagemagick']['imagemagick_convert'] = array(
+  $form['imagemagick_convert'] = array(
     '#type' => 'textfield',
     '#title' => t('Path to the "convert" binary'),
     '#default_value' => $config->get('imagemagick_convert'),
     '#required' => TRUE,
     '#element_validate' => array('imagemagick_element_validate_path'),
-    '#weight' => -10,
     '#description' => t('The complete path and filename of the ImageMagick <kbd>convert</kbd> binary. For example: <kbd>/usr/bin/convert</kbd> or <kbd>C:\Program Files\ImageMagick-6.3.4-Q16\convert.exe</kbd>'),
   );
   // Prepare sub-element to output version or errors.
-  $form['imagemagick']['version'] = array();
-  $form['imagemagick']['#after_build'] = array('_imagemagick_build_version');
+  $form['version'] = array();
+  $form['#after_build'] = array('_imagemagick_build_version');
 
-  $form['imagemagick']['imagemagick_debug'] = array(
+  $form['imagemagick_debug'] = array(
     '#type' => 'checkbox',
     '#title' => t('Display debugging information'),
     '#default_value' => $config->get('imagemagick_debug'),
